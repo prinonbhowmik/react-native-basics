@@ -1,21 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.textD}>
-        Prinon Bhowmik
-      </Text>
-
       <View>
-        <Text style={styles.textD} >01682424623</Text>
+        <TextInput
+          style={styles.textD}
+          placeholder='Your goal' />
+        <Button
+          title='Add Goal'
+        />
       </View>
-
-      <Button
-        title='Click Me'
-      />
-      <StatusBar style="auto" />
+      <View>
+        <Text>List of goals....</Text>
+      </View>
     </View>
   );
 }
