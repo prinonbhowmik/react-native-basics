@@ -9,6 +9,7 @@ export default function App() {
           style={styles.textD}
           placeholder='Your goal' />
         <Button
+          backgroundColor='red'
           title='Add Goal'
         />
       </View>
@@ -22,7 +23,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -30,6 +31,8 @@ const styles = StyleSheet.create({
     margin: 16,
     borderWidth: 2,
     borderColor: 'black',
-    padding: 4
-  }
+    padding: 10,
+    width: '80%',
+  },
+
 });
