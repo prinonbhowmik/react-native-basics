@@ -1,33 +1,22 @@
 
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { useState } from 'react';
 
+import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
+
 export default function App() {
-  const [enteredGoalText, setEnteredGoalText] = useState('')
+
   const [courseGoals, setCourseGoals] = useState([])
 
-  function goalInputHandeler(enteredText) {
-    setEnteredGoalText(enteredText)
-  }
-
-  function addGoalHandler() {
-    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, enteredGoalText])
+  function addGoalHandler(enteredGoalText) {
+    setCourseGoals((currentCourseGoals) => [...currentCourseGoals, { text: enteredGoalText, id: Math.random().toString() }])
   }
   return (
     <View style={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.textInput}
-          placeholder='Your goal'
-          onChangeText={goalInputHandeler}
-        />
-        <Button
-          backgroundColor='red'
-          title='Add Goal'
-          onPress={addGoalHandler}
-        />
-      </View>
+
+      <GoalInput onAddGoal={addGoalHandler} />
+
       <View
         style={styles.goalsContainer}>
 
@@ -47,7 +36,6 @@ export default function App() {
               </Text>
             </View>
           ))}
-
         </ScrollView> */}
 
         { /* FlatList Demo */}
@@ -55,20 +43,10 @@ export default function App() {
         <FlatList
           data={courseGoals}
           renderItem={(itemData) => {
-            return (
-              <View
-                style={styles.goalListItems}>
-                <Text style={styles.goalTextColor}>
-                  {itemData.item}
-                </Text>
-              </View>
-            )
+            return <GoalItem text={itemData.item.text} />;
           }}
           alwaysBounceVertical={false}
           showsVerticalScrollIndicator={false} />
-
-
-
 
       </View>
     </View>
@@ -81,37 +59,10 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16
   },
-  textInput: {
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 10,
-    width: '70%',
-    marginRight: 8,
-    padding: 8,
-    borderRadius: 6,
-  },
-  inputContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
 
-  },
   goalsContainer: {
     flex: 5,
     paddingBottom: 10
-  },
-  goalListItems: {
-    margin: 8,
-    padding: 8,
-    borderRadius: 6,
-    backgroundColor: '#0000ff',
-
-  },
-  goalTextColor: {
-    color: 'white'
   }
+
 });
