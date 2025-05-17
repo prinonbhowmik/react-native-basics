@@ -52,6 +52,22 @@ export default function App() {
 
         { /* FlatList Demo */}
 
+        <FlatList
+          data={courseGoals}
+          renderItem={(itemData) => {
+            return (
+              <View
+                style={styles.goalListItems}>
+                <Text style={styles.goalTextColor}>
+                  {itemData.item}
+                </Text>
+              </View>
+            )
+          }}
+          alwaysBounceVertical={false}
+          showsVerticalScrollIndicator={false} />
+
+
 
 
       </View>
@@ -92,7 +108,7 @@ const styles = StyleSheet.create({
     margin: 8,
     padding: 8,
     borderRadius: 6,
-    backgroundColor: '#e345ee',
+    backgroundColor: '#0000ff',
 
   },
   goalTextColor: {
