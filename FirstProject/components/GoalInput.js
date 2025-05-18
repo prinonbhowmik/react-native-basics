@@ -10,23 +10,24 @@ function GoalInput(props) {
         setEnteredGoalText(enteredText)
     }
 
-    function addGoalHandler(enteredGoalText) {
+    function addGoalHandler() {
         props.onAddGoal(enteredGoalText)
         setEnteredGoalText('')
     }
 
-    <View style={styles.inputContainer}>
-        <TextInput
-            style={styles.textInput}
-            placeholder='Your goal'
-            onChangeText={goalInputHandeler}
-        />
-        <Button
-            backgroundColor='#000000'
-            title='Add Goal'
-            onPress={addGoalHandler}
-        />
-    </View>
+    return (
+        <View style={styles.inputContainer}>
+            <TextInput
+                style={styles.textInput}
+                placeholder='Your goal'
+                onChangeText={goalInputHandeler}
+            />
+            <Button
+                title='Add Goal'
+                onPress={addGoalHandler}
+            />
+        </View>
+    );
 };
 
 export default GoalInput;
