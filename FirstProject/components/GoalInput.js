@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput, Button } from "react-native";
+import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
 import { useState } from "react";
 
 
@@ -21,6 +21,7 @@ function GoalInput(props) {
                 style={styles.textInput}
                 placeholder='Your goal'
                 onChangeText={goalInputHandeler}
+                value={enteredGoalText}
             />
             <Button
                 title='Add Goal'
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 10,
         borderBottomWidth: 1,
         borderBottomColor: 'black',
 
