@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput, Button, Alert } from "react-native";
+import { StyleSheet, View, TextInput, Button, Alert, Modal } from "react-native";
 import { useState } from "react";
 
 
@@ -16,18 +16,32 @@ function GoalInput(props) {
     }
 
     return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                style={styles.textInput}
-                placeholder='Your goal'
-                onChangeText={goalInputHandeler}
-                value={enteredGoalText}
-            />
-            <Button
-                title='Add Goal'
-                onPress={addGoalHandler}
-            />
-        </View>
+        <Modal visible={props.visible} animationType="slide">
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={styles.textInput}
+                    placeholder='Your goal'
+                    onChangeText={goalInputHandeler}
+                    value={enteredGoalText}
+                />
+                <View style={styles.buttonContainer}>
+                    <View style={styles.buttonView}>
+                        <Button
+                            title='Add Goal'
+                            onPress={addGoalHandler}
+                        />
+                    </View>
+
+                    <View style={styles.buttonView}>
+                        <Button
+                            title="Cancel"
+                            onPress={props.onCancel}
+                        />
+                    </View>
+
+                </View>
+            </View>
+        </Modal>
     );
 };
 
@@ -38,14 +52,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         padding: 10,
-        width: '70%',
+        width: '80%',
         marginRight: 8,
         padding: 8,
         borderRadius: 6,
     },
     inputContainer: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 10,
@@ -53,4 +67,12 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
 
     },
+    buttonContainer: {
+        marginTop: 10,
+        flexDirection: 'row'
+    },
+    buttonView: {
+        width: '30%',
+        marginHorizontal: 10
+    }
 });
