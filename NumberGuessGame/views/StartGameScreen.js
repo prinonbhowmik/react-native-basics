@@ -1,8 +1,9 @@
 import { TextInput, Button, View, StyleSheet, Alert } from "react-native";
-import PrimaryButton from '../components/PrimaryButton';
+import PrimaryButton from '../components/ui/PrimaryButton';
 import { useState } from "react";
+import Colors from "../constants/Colors";
 
-function StartGameScreen() {
+function StartGameScreen({ onPickNumber }) {
     const [enteredNumber, setEnteredNumber] = useState('')
 
     function numberInputHandler(enteredText) {
@@ -20,9 +21,11 @@ function StartGameScreen() {
                 'Invalid Number',
                 'Number input should be between 1 to 99.',
                 [{ text: 'Okay', style: 'cancel', onPress: resetInputHandler }]
-            )
+            );
             return;
         }
+
+        onPickNumber(chosenNumber);
     }
 
     return <View style={styles.mainContainer}>
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
         marginTop: 80,
         marginHorizontal: 20,
         alignItems: 'center',
-        backgroundColor: "#72063c",
+        backgroundColor: Colors.primary800,
         borderRadius: 10,
         elevation: 10,
         shadowColor: 'black',
@@ -72,13 +75,13 @@ const styles = StyleSheet.create({
     },
     inputContainer: {
         borderWidth: 1,
-        borderColor: '#ddb52f',
+        borderColor: Colors.primaryYellow,
         padding: 10,
         width: '90%',
         margin: 8,
         padding: 8,
         borderRadius: 6,
-        color: '#ddb52f',
+        color: Colors.primaryYellow,
         marginVertical: 8,
         fontSize: 30,
         fontWeight: 'bold',
