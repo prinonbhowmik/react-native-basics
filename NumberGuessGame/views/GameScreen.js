@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet, Alert } from "react-native";
 import Title from "../components/ui/Title";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
+import Card from "../components/ui/Card";
+import { Ionicons } from '@expo/vector-icons';
 
 function generateRandomBetween(min, max, exclude) {
     const rndNm = Math.floor(Math.random() * (max - min)) + min;
@@ -17,9 +19,15 @@ function generateRandomBetween(min, max, exclude) {
 let minBoundary = 1;
 let maxBOundary = 100;
 
-function GameScreen({ userNumber }) {
-    const initialGuess = generateRandomBetween(minBoundary, maxBOundary, userNumber);
+function GameScreen({ userNumber, onGameOver }) {
+    const initialGuess = generateRandomBetween(1, 100, userNumber);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
+
+    useEffect(() => {
+        if (currentGuess === userNumber) {
+            onGameOver();
+        }
+    }, [currentGuess, userNumber, onGameOver]);
 
     function nextGuessHandler(direction) {
 
@@ -44,16 +52,30 @@ function GameScreen({ userNumber }) {
 
         <NumberContainer>{currentGuess}</NumberContainer>
 
-        <Text style={styles.textContainer}>Higher or lower?</Text>
+        <Card>
+            <Text style={styles.textContainer}>Higher or lower?</Text>
 
-        <View style={styles.buttonContainer}>
-            <View style={styles.individiulButtonContainer}>
-                <PrimaryButton onPressed={nextGuessHandler.bind(this, 'lower')}> - </PrimaryButton>
+            <View style={styles.buttonContainer}>
+                <View style={styles.individiulButtonContainer}>
+                    <PrimaryButton onPressed={nextGuessHandler.bind(this, 'lower')}>
+                        <Ionicons
+                            name="remove"
+                            size={24}
+                            color="white"
+                        />
+                    </PrimaryButton>
+                </View>
+                <View style={styles.individiulButtonContainer}>
+                    <PrimaryButton onPressed={nextGuessHandler.bind(this, 'greater')}>
+                        <Ionicons
+                            name="add"
+                            size={24}
+                            color="white"
+                        />
+                    </PrimaryButton>
+                </View>
             </View>
-            <View style={styles.individiulButtonContainer}>
-                <PrimaryButton onPressed={nextGuessHandler.bind(this, 'greater')}> + </PrimaryButton>
-            </View>
-        </View>
+        </Card>
     </View>
 }
 
