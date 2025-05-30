@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
         fontSize: 16,
-        fontWeight: 'semibold'
+        fontFamily: 'oswald-regular'
     },
     pressed: {
         opacity: 0.75

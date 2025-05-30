@@ -37,7 +37,6 @@ function StartGameScreen({ onPickNumber }) {
                 style={styles.inputContainer}
                 maxLength={2}
                 keyboardType="number-pad"
-                placeholder="Enter a number"
                 autoCorrect={false}
                 onChangeText={numberInputHandler}
                 value={enteredNumber}
@@ -63,19 +62,21 @@ const styles = StyleSheet.create({
     rootContainer: {
         flex: 1,
         marginTop: 40,
+        alignItems: 'center',
     },
     inputContainer: {
         borderWidth: 1,
         borderColor: Colors.primaryYellow,
         padding: 10,
-        width: '90%',
+        width: '80%',
+        minWidth: '80%',
         margin: 8,
         padding: 8,
         borderRadius: 6,
         color: Colors.primaryYellow,
         marginVertical: 8,
         fontSize: 30,
-        fontWeight: 'bold',
+        fontFamily: 'oswald- bold',
         textAlign: 'center'
     },
     buttonContainer: {

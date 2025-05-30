@@ -110,7 +110,8 @@ export default GameScreen;
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
-        padding: 24
+        padding: 24,
+        alignItems: 'center'
     },
     individiulButtonContainer: {
         flex: 1
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         fontSize: 20,
-        fontWeight: 'semibold',
+        fontFamily: 'oswald-bold',
         color: 'white',
         textAlign: 'center'
     },

@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
         // borderWidth: 2,
         // borderColor: Colors.primaryYellow,
         // borderRadius: 8,
-        padding: 4
+        padding: 4,
+        maxWidth: '80%'
     }
 });

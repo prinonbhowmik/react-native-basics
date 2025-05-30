@@ -9,7 +9,9 @@ function NumberContainer({ children }) {
 
 export default NumberContainer;
 
+
 const styles = StyleSheet.create({
+
     container: {
         borderWidth: 4,
         borderColor: Colors.primaryYellow,
@@ -17,11 +19,12 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         margin: 24,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        minWidth: '60%'
     },
     numberText: {
         color: Colors.primaryYellow,
         fontSize: 36,
-        fontWeight: 'bold'
+        fontFamily: 'oswald-bold'
     }
 });

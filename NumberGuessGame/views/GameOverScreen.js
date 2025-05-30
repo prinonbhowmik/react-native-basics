@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     text: {
-        fontSize: 18
+        fontSize: 18,
+        fontFamily: 'oswald-regular'
     }
 });
