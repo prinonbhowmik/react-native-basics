@@ -1,4 +1,4 @@
-import { FlatList } from "react-native";
+import { FlatList, SafeAreaView } from "react-native";
 import { CATEGORIES } from "../data/dummy-data";
 import CategoryGridItems from "../components/CategoryGridItems";
 
@@ -27,6 +27,7 @@ function CategoriesScreen({ navigation }) {
             keyExtractor={(item) => item.id}
             renderItem={renderCategories}
             numColumns={2}
+            showsVerticalScrollIndicator={false}
         />
     );
 }

@@ -6,6 +6,7 @@ function CategoryGridItems({ title, color, onPressed }) {
     return (
         <View style={styles.gridItem}>
             <Pressable
+                android_ripple={{ color: '#ccc' }}
                 style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
                 onPress={onPressed}
             >
@@ -21,7 +22,7 @@ export default CategoryGridItems;
 
 const styles = StyleSheet.create({
     textContainer: {
-        fontFamily: 'roboto-semibold',
+        fontFamily: 'roboto-bold',
         fontSize: 18
     },
     gridItem: {

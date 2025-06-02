@@ -2,7 +2,7 @@ import { View, FlatList, StyleSheet } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealItem from "../components/MealItem";
 
-function MealsOverviewScreen({ route }) {
+function MealsOverviewScreen({ route, navigation }) {
     const catName = route.params.name
     const catId = route.params.categoryId
 
@@ -10,8 +10,30 @@ function MealsOverviewScreen({ route }) {
         return mealItem.categoryIds.indexOf(catId) >= 0
     });
 
+
+
     function renderMealItems(itemData) {
-        return <MealItem title={itemData.item.title} />
+        const item = itemData.item;
+        const mealItemsProps = {
+            title: item.title,
+            imageUrl: item.imageUrl,
+            affordability: item.affordability,
+            complexity: item.complexity,
+            duration: item.duration
+        }
+
+        function pressHandler() {
+            navigation.navigate('MealDetails', {
+                mealId: item.id,
+                mealName: item.title,
+                mealImage: item.imageUrl
+            });
+        }
+
+        return <MealItem
+            {...mealItemsProps}
+            onPressed={pressHandler}
+        />
     };
 
     return (
@@ -20,6 +42,7 @@ function MealsOverviewScreen({ route }) {
                 data={displayedMeals}
                 keyExtractor={(item) => item.id}
                 renderItem={renderMealItems}
+                showsVerticalScrollIndicator={false}
             />
         </View>
     );
