@@ -1,5 +1,5 @@
 
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View, Text } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import CategoriesScreen from './screens/CategoriesScreen';
@@ -8,8 +8,40 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailsScreen from './screens/MealDetailsScreen';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import FavoriteScreen from './screens/FavoriteScreen';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNavigator() {
+  return (
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#e5e4ee',
+        },
+        headerTitleStyle: {
+          fontFamily: 'roboto-bold',
+          fontSize: 18,
+
+        },
+        headerTintColor: 'black',
+        sceneStyle: {
+          backgroundColor: '#e5e4ee'
+        },
+        headerShadowVisible: false,
+      }}>
+      <Drawer.Screen
+        name='Categories'
+        component={CategoriesScreen}
+        options={{ title: 'All Categories' }} />
+      <Drawer.Screen
+        name='Favorites'
+        component={FavoriteScreen} />
+    </Drawer.Navigator>
+  );
+}
 
 export default function App() {
 
@@ -47,10 +79,10 @@ export default function App() {
           }}
         >
           <Stack.Screen
-            name="MealsCategories"
-            component={CategoriesScreen}
+            name="Drawer"
+            component={DrawerNavigator}
             options={{
-              title: 'All Categories',
+              headerShown: false
             }}
           />
           <Stack.Screen
@@ -80,7 +112,5 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: {
 
-  },
 });
