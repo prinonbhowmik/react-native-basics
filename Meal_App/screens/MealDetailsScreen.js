@@ -1,15 +1,42 @@
 import { View, Text, Image, StyleSheet, FlatList, ScrollView, Pressable } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
-import { useLayoutEffect } from "react";
+import { useLayoutEffect, useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from '../store/redux/favorites'
+// import { FavouritesContext } from "../store/context/favourite-context";
 
 
 function MealDetailsScreen({ route, navigation }) {
 
     const mealId = route.params.mealId;
-
     const selectedMeal = MEALS.find((meal) => meal.id == mealId);
+
+    const favoriteMealIds = useSelector((state) => state.favoriteMeals.ids);
+    const dispatch = useDispatch();
+    const mealIsFavorite = favoriteMealIds.includes(mealId);
+
+    // React Context
+    // const favoriteMealContext = useContext(FavouritesContext);
+    // const mealIsFavorite = favoriteMealContext.ids.includes(mealId);
+
+    // function changeFavoriteStatusHandler() {
+    //     if (mealIsFavorite) {
+    //         favoriteMealContext.removeFavorite(mealId);
+    //     } else {
+    //         favoriteMealContext.addFavorite(mealId);
+    //     }
+    // }
+
+    //Redux
+    function changeFavoriteStatusHandler() {
+        if (mealIsFavorite) {
+            dispatch(removeFavorite({ id: mealId }));
+        } else {
+            dispatch(addFavorite({ id: mealId }));
+        }
+    }
 
     useLayoutEffect(() => {
         navigation.setOptions({
@@ -17,23 +44,25 @@ function MealDetailsScreen({ route, navigation }) {
                 return (
                     <Pressable
                         android_ripple={{ color: '#ccc' }}
-                        style={({ pressed }) => pressed ? { opacity: 0.7 } : styles.button}
+                        style={({ pressed }) =>
+                            pressed ? { opacity: 0.7 } : styles.button}
+                        onPress={changeFavoriteStatusHandler}
                     >
                         <View style={styles.buttonContent}>
                             <Ionicons
-                                name="heart-outline"
+                                name="heart"
                                 size={18}
-                                color='white' />
+                                color={mealIsFavorite ? 'red' : 'white'} />
                             <Text
                                 style={styles.buttonText}>
-                                Like
+                                {mealIsFavorite ? 'Liked' : 'Like'}
                             </Text>
                         </View>
                     </Pressable>
                 );
             },
         });
-    });
+    }, [navigation, changeFavoriteStatusHandler]);
 
     function renderIngridents(itemData) {
         const item = itemData.item;
