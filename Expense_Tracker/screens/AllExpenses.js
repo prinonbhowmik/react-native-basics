@@ -6,7 +6,10 @@ import { ExpenseContext } from "../context/expense-context";
 function AllExpenses() {
     const expenseCtx = useContext(ExpenseContext);
     return (
-        <ExpensesOutput expenses={expenseCtx.expenses} expensesPeriod={"Total"} emptyText={"No Expenses!"} />
+        <ExpensesOutput
+            expenses={expenseCtx.expenses}
+            expensesPeriod={"Total"}
+            emptyText={"No Expenses!"} />
     );
 }
 

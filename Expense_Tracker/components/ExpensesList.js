@@ -3,7 +3,7 @@ import ExpenseItems from "./ExpenseItems";
 
 
 function renderExpenseItems(itemData) {
-    return <ExpenseItems{...itemData.item} />;
+    return <ExpenseItems {...itemData.item} />;
 }
 
 function ExpensesList({ expenses }) {
